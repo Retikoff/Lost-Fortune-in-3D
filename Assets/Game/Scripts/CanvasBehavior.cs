@@ -17,8 +17,9 @@ public class CanvasBehavior : MonoBehaviour
         SetSliderBounds(slider.minValue, slider.maxValue);
     }
 
-    public void PrintInput()
+    public void SubmitInput()
     {
+        gameObject.SetActive(false);
         Debug.Log("Пользователь ввел: \n" + "Name:" + input.text + "\nNumber: " + slider.value + "\nObject: " + dropdown.value);
     }
 
