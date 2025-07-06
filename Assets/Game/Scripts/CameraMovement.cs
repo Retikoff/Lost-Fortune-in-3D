@@ -23,6 +23,7 @@ public class CameraMovement : MonoBehaviour
 
         if (action.WasPressedThisFrame() && currentPositionId < positions.Length)
         {
+            RotateForNextPosition();
             MoveToNextPosition();
             UpdateState();
         }
@@ -33,33 +34,26 @@ public class CameraMovement : MonoBehaviour
         this.cameraState = cameraState;
     }
 
-    private void MoveToNextPosition(float duration = 2f)
+    private void MoveToNextPosition(float duration = 4f)
     {
         transform.DOMove(positions[currentPositionId++], duration);
     }
 
+    private void RotateForNextPosition(float duration = 4f)
+    {
+        transform.DORotate(rotations[currentPositionId], duration);   
+    }
+
     private void UpdateState()
     {
-        switch (currentPositionId)
+        cameraState = currentPositionId switch
         {
-            case 0:
-                cameraState = CameraStates.Empty;
-                break;
-            case 1:
-                cameraState = CameraStates.Init;
-                break;
-            case 2:
-                cameraState = CameraStates.NPC;
-                break;
-            case 3:
-                cameraState = CameraStates.Forest;
-                break;
-            case 4:
-                cameraState = CameraStates.Lawn;
-                break;
-            default:
-                cameraState = CameraStates.Error;
-                break;
-        }
+            0 => CameraStates.Empty,
+            1 => CameraStates.Init,
+            2 => CameraStates.NPC,
+            3 => CameraStates.Forest,
+            4 => CameraStates.Lawn,
+            _ => CameraStates.Error,
+        };
     }
 }
