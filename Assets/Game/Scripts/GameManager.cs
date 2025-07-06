@@ -8,19 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int MAX_OBJECTS = 20;
     [SerializeField] private GameObject[] TreePrefabs;
     [SerializeField] private TMP_Text NPCNameComponent;
-    private string NPCName;
-    private float number;
-    private int objectChoice;
 
-    public void SetUp(string NPCName, float number, int objectChoice)
-    {
-        this.NPCName = NPCName;
-        this.number = number;
-        this.objectChoice = objectChoice;
-        GenerateScene();
-    }
-
-    private void GenerateScene()
+    public void GenerateScene(string NPCName, float number, int objectChoice)
     {
         //change NPCName
         //
@@ -57,6 +46,7 @@ public class GameManager : MonoBehaviour
 
         //invoke camera
         cameraMovement.SetCameraState(CameraStates.Init);
+        GetComponent<DialogueManager>().GenerateText(NPCName, number, objectChoice);
     }
 
     private GameObject GetObjectPrefabFromResources(string name)

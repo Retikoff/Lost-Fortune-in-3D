@@ -21,7 +21,7 @@ public class CanvasBehavior : MonoBehaviour
     public void SubmitInput()
     {
         gameObject.SetActive(false);
-        gameManager.SetUp(input.text, slider.value, dropdown.value);
+        gameManager.GenerateScene(input.text, slider.value, dropdown.value);
         Debug.Log("Пользователь ввел: \n" + "Name:" + input.text + "\nNumber: " + slider.value + "\nObject: " + dropdown.value);
     }
 

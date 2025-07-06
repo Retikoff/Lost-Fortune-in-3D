@@ -19,19 +19,22 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        //states?? i wanna keep them to separate dialogue logic and build it reliable on camerastates
-
         if (action.WasPressedThisFrame() && currentPositionId < positions.Length)
         {
+            UpdateState();
             RotateForNextPosition();
             MoveToNextPosition();
-            UpdateState();
         }
     }
 
     public void SetCameraState(CameraStates cameraState)
     {
         this.cameraState = cameraState;
+    }
+
+    public CameraStates GetCameraState()
+    {
+        return cameraState;
     }
 
     private void MoveToNextPosition(float duration = 4f)
@@ -48,11 +51,13 @@ public class CameraMovement : MonoBehaviour
     {
         cameraState = currentPositionId switch
         {
+            //i want to keep them for dialogue system
             0 => CameraStates.Empty,
             1 => CameraStates.Init,
             2 => CameraStates.NPC,
             3 => CameraStates.Forest,
             4 => CameraStates.Lawn,
+            5 => CameraStates.End,
             _ => CameraStates.Error,
         };
     }

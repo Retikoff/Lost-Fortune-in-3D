@@ -7,5 +7,6 @@ public enum CameraStates
     Init,
     NPC,
     Forest,
-    Lawn
+    Lawn,
+    End
 }
