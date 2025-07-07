@@ -8,22 +8,24 @@ public class CameraMovement : MonoBehaviour
     private CameraStates cameraState;
     [SerializeField] private Vector3[] positions;
     [SerializeField] private Vector3[] rotations;
-    private int currentPositionId = 0;
-    InputAction action;
-    void Start()
+    private int currentPositionId = 1;
+    private InputAction action;
+    private void Start()
     {
         cameraState = CameraStates.Empty;
         action = InputSystem.actions.FindAction("Jump");
         MoveToNextPosition();
     }
 
-    void Update()
+    private void Update()
     {
         if (action.WasPressedThisFrame() && currentPositionId < positions.Length)
         {
+            if (cameraState == CameraStates.Empty) return;
             UpdateState();
             RotateForNextPosition();
             MoveToNextPosition();
+            Debug.Log(cameraState);
         }
     }
 

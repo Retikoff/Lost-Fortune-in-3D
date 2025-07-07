@@ -1,6 +1,8 @@
 using System.Diagnostics;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int MAX_OBJECTS = 20;
     [SerializeField] private GameObject[] TreePrefabs;
     [SerializeField] private TMP_Text NPCNameComponent;
+    [SerializeField] private GameObject endScreen;
+
+    private void Update()
+    {
+        if (cameraMovement.GetCameraState() == CameraStates.End)
+        {
+            endScreen.SetActive(true);
+        }
+        else
+        {
+            endScreen.SetActive(false);
+        }
+    }
 
     public void GenerateScene(string NPCName, float number, int objectChoice)
     {
@@ -64,5 +79,11 @@ public class GameManager : MonoBehaviour
             3 => "Objects/Cornflower",
             _ => ""
         };
+    }
+
+    public void ReloadScene()
+    {
+        DOTween.KillAll();
+        SceneManager.LoadScene(0);
     }
 }

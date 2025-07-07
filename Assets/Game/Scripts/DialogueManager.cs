@@ -16,10 +16,10 @@ public class DialogueManager : MonoBehaviour
 
     public void GenerateText(string NPCName, float number, int objectChoice)
     {
-        texts[CameraStates.Init] = "Init state";
-        texts[CameraStates.NPC] = "NPC Scene " + NPCName;
-        texts[CameraStates.Forest] = "Forest Scene " + number;
-        texts[CameraStates.Lawn] = "Lawn Scene " + objectChoice;
+        texts[CameraStates.Init] = "Очнувшись главный герой не понимал где он и что вообще забыл на этом пустыре.";
+        texts[CameraStates.NPC] = "Подняв глаза, наш герой увидел жизнерадостного человека по имени " + NPCName + ". Но на этом наш герой не остановился и осмелился пойти дальше...";
+        texts[CameraStates.Forest] = "Пройдя небольшое расстояние, главный герой увидел лес из " + number + " деревьев различных видов.";
+        texts[CameraStates.Lawn] = "Миновав лес, наш герой наткнулся на поляну " + GetTextByObjectChoice(objectChoice) + " еще не тронутую ни одним живым существом.";
         texts[CameraStates.Error] = "?Error?";
         texts[CameraStates.End] = "End";
     }
@@ -38,5 +38,17 @@ public class DialogueManager : MonoBehaviour
         }
 
         dialogueText.text = texts[currentCameraState];
+    }
+
+    private string GetTextByObjectChoice(int objectChoice)
+    {
+        return objectChoice switch
+        {
+            0 => "грибов",
+            1 => "мухоморов",
+            2 => "роз",
+            3 => "васильков",
+            _ => "error"
+        };
     }
 }
