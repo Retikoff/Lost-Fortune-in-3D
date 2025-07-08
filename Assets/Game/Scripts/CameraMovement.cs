@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector3[] rotations;
     private int currentPositionId = 1;
     private InputAction action;
+
     private void Start()
     {
         cameraState = CameraStates.Empty;
@@ -25,7 +26,6 @@ public class CameraMovement : MonoBehaviour
             UpdateState();
             RotateForNextPosition();
             MoveToNextPosition();
-            Debug.Log(cameraState);
         }
     }
 

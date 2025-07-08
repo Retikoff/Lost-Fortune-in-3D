@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
         // x: 7 11 , z: 8 11 
         // y: 0.62
 
-
         //NPC name
         NPCNameComponent.text = NPCName;
 
@@ -61,6 +60,7 @@ public class GameManager : MonoBehaviour
 
         //invoke camera
         cameraMovement.SetCameraState(CameraStates.Init);
+        //generate text for dialogue
         GetComponent<DialogueManager>().GenerateText(NPCName, number, objectChoice);
     }
 
